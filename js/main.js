@@ -43,7 +43,8 @@ jQuery( document ).ready(function( $ ) {
     
     });
     
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () 
+{
       const additionalOptionsCheckbox = document.getElementById('additional-options');
       const additionalOptionsContent = document.querySelector('.additional-options-content');
     
@@ -144,9 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('myModal');
     const modalContent = document.getElementById('myModalContent');
     
-    // Выберите кнопку, которая будет вызывать модальное окно
-    const showModalButton = document.getElementById('showModalButton');
-    
     // Функция для проверки заполнения полей формы
     function validateForm() {
       const requiredInputs = [
@@ -207,15 +205,9 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.style.display = 'none';
       }
     });
-    
-    // Привязываем функцию для отображения модального окна к событию клика на кнопку "Показать модальное окно"
-    showModalButton.addEventListener('click', () => {
-      modalContent.innerHTML = document.getElementById('data-form').textContent;
-      modal.style.display = 'block';
-    });
-    
-    });
-
+  
+   
+});
 
 // Появление бокового окна навигации на мобильных устройствах
 function openNav() {

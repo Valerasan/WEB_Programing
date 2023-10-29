@@ -336,7 +336,7 @@ body
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  z-index: 150;
   overflow: auto;
 }
 
@@ -383,10 +383,6 @@ body
     transition: 0.3s;
   }
 
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
 
   .sidenav .closebtn {
     position: absolute;
@@ -396,17 +392,6 @@ body
     margin-left: 50px;
   }
   
-  #main {
-    transition: margin-left .5s;
-    padding: 20px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-
-
 
   .row {
     display: flex;
@@ -415,4 +400,40 @@ body
   .column {
     flex: 33.33%;
     padding: 5px;
+  }
+
+
+
+
+  /* slyeder */
+
+  /* .list-house
+  {
+    
+  } */
+  .slider {
+    width: 1000px;
+    height: 670px;
+    display: flex;
+    overflow-x: auto;
+    justify-content: space-between;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;  
+  }
+  .slide {
+    width: 300px;
+    flex-shrink: 0;
+    height: 100%;
+  }
+
+  .slides > div {
+    /* CURRENT way. */
+    scroll-snap-align: start;
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
