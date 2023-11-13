@@ -42,8 +42,12 @@ jQuery( document ).ready(function( $ ) {
     });
     
     });
-    
-document.addEventListener('DOMContentLoaded', function () 
+
+jQuery(document).ready(function (){
+    Cook
+})
+
+document.addEventListener('DOMContentLoaded', function ()
 {
       const additionalOptionsCheckbox = document.getElementById('additional-options');
       const additionalOptionsContent = document.querySelector('.additional-options-content');

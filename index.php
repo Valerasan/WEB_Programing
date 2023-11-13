@@ -12,6 +12,28 @@
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+
+
+<?php
+// define variables and set to empty values
+$name = $email = $secondName = $children = $telephone = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
+    $telephone = test_input($_POST["telephone"]);
+    $children = test_input($_POST["children"]);
+    $secondName = test_input($_POST["secondName"]);
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
 	<section class="head">
 		<div class="container">
 			<div class="head-content">
@@ -92,94 +114,127 @@
 	<section id="boking" class="form-booking">
 		<div class="container">
 			<div class="block-form">
-				<form class="form-data">
-			<div class="main-selest-data">	
-				<div class="input-field">
-					<label for="date-start">Дата заїзду</label>
-				<input type="date" id="date-start" name="date-start" class="input-date" required>
-				</div>
-				<div class="input-field">
-					<label for="date-end">Дата виїзду</label>
-					<input type="date" id="date-end" name="date-end" class="input-date" required>
-				</div>
-				<div class="input-field">
-					<label for="room-select">Кількість кімнат:</label>
-					<select id="room-select">
-  						<option value="1" data-price="0">1 кімната</option>
-  						<option value="2" data-price="1000">2 кімнати</option>
-  						<option value="3" data-price="1200">3 кімнати</option>
-  						<option value="4" data-price="1500">4 кімнати</option>
-  					</select>
-				</div>
-				<div class="input-field">
-					<label for="person-select">Кількість дорослих:</label>
-					<select id="person-select">
-   						<option value="1">1 дорослий</option>
-    					<option value="2">2 дорослих</option>
-    					<option value="3">3 дорослих</option>
-    					<option value="4">4 дорослих</option>
-  					</select>
-  				</div>
-  				<div class="input-field">
-  					<label for="person-select">Кількість дітей:</label>
-  					<select id="child-select">
- 							<option value="0">Без дітей</option>
-    						<option value="1">1 дитина</option>
-    						<option value="2">2 дітей</option>
-    						<option value="3">3 дітей</option>
-    						<option value="4">4 дітей</option>
-					</select>
-				</div>
+                <form class="form-data" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <div class="main-selest-data">
+                        <div class="input-field">
+                            <label for="date-start">Дата заїзду</label>
+                        <input type="date" id="date-start" name="date-start" class="input-date" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="date-end">Дата виїзду</label>
+                            <input type="date" id="date-end" name="date-end" class="input-date" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="room-select">Кількість кімнат:</label>
+                            <select id="room-select">
+                                <option value="1" data-price="0">1 кімната</option>
+                                <option value="2" data-price="1000">2 кімнати</option>
+                                <option value="3" data-price="1200">3 кімнати</option>
+                                <option value="4" data-price="1500">4 кімнати</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="person-select">Кількість дорослих:</label>
+                            <select id="person-select">
+                                <option value="1">1 дорослий</option>
+                                <option value="2">2 дорослих</option>
+                                <option value="3">3 дорослих</option>
+                                <option value="4">4 дорослих</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="person-select">Кількість дітей:</label>
+                            <select title="Children" id="child-select" name="children">
+                                    <option value="0">Без дітей</option>
+                                    <option value="1">1 дитина</option>
+                                    <option value="2">2 дітей</option>
+                                    <option value="3">3 дітей</option>
+                                    <option value="4">4 дітей</option>
+                            </select>
+                        </div>
+                    </div>
+                        <div class="additional-options">
+                            <label for="additional-options">Додаткові опції:</label>
+                            <input type="checkbox" id="additional-options">
+                            <div class="additional-options-content">
+                                <div class="check-option">
+                                    <label for="option-1">Сніданок</label>
+                                    <input type="checkbox" id="option-1">
+                                    <div id="breakfast-price">Вартість сніданків: 0 грн</div>
+                                </div>
+                                <div class="check-option">
+                                    <label for="option-2">Підвезення з вокзалу</label>
+                                    <input type="checkbox" id="option-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="price">Вартість: 0 грн</div>
+                        <div class="approw-btn">
+                            <input type="button" id="approw-btn" class="btn" value="Замовити">
+                        </div>
+                        <div id="additional-fields" class="additional-fields" style="display: none;">
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="surname">Прізвище:*</label>
+                                    <input type="text" id="surname"><br>
+                            </div>
+                            <div class="input-field">
+                                <label for="name">Ім'я:*</label>
+                                <input type="text" id="name" name="name" required><br>
+                            </div>
+                            <div class="input-field">
+                                <label for="patronymic">По-батькові:*</label>
+                                <input type="text" id="patronymic"  name="secondName" required><br>
+                            </div>
+                            <div class="input-field">
+                                <label for="phone">Номер телефону:*</label>
+                                <input type="text" id="phone" name="telephone" required><br>
+                            </div>
+                            <div class="input-field">
+                                <label for="email">Email:*</label>
+                                <input type="email" id="email" name="email" required><br>
+                            </div>
+                        </div>
+                            <div class="approw-btn">
+                            <input type="submit" id="send"  name="Send" class="btn" value="Відравити">
+<!--                            <input type="submit"  value="Відравити">-->
+                        </div>
+                        </div>
+                </form>
 			</div>
-				<div class="additional-options">
-  					<label for="additional-options">Додаткові опції:</label>
-  					<input type="checkbox" id="additional-options">
-  					<div class="additional-options-content">
-  						<div class="check-option">
-    						<label for="option-1">Сніданок</label>
-    						<input type="checkbox" id="option-1">
-    						<div id="breakfast-price">Вартість сніданків: 0 грн</div>
-    					</div>
-    					<div class="check-option">
-    						<label for="option-2">Підвезення з вокзалу</label>
-    						<input type="checkbox" id="option-2">
-    					</div>
-  					</div>
-				</div>
-				<div id="price">Вартість: 0 грн</div>
-				<div class="approw-btn">
-  					<input type="button" id="approw-btn" class="btn" value="Замовити">
-				</div>
-				<div id="additional-fields" class="additional-fields" style="display: none;">
-					<div class="fields">
-						<div class="input-field">
-							<label for="surname">Прізвище:*</label>
-							<input type="text" id="surname" required><br>
-					</div>
-					<div class="input-field">					
-  						<label for="name">Ім'я:*</label>
-  						<input type="text" id="name" required><br>
-					</div>
-					<div class="input-field">
-  						<label for="patronymic">По-батькові:*</label>
-  						<input type="text" id="patronymic" required><br>
-  					</div>
-  					<div class="input-field">
-  						<label for="phone">Номер телефону:*</label>
-  						<input type="text" id="phone" required><br>
-  					</div>
-  					<div class="input-field">
-  						<label for="email">Email:*</label>
-  						<input type="email" id="email" required><br>
-  					</div>
-  				</div>
-  					<div class="approw-btn">
-  					<input type="button" id="send"  class="btn "value="Відравити">
-				</div>
-				</div>
-			</form>
-			</div>
+<!--            <form method="post" action="--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?><!--">-->
+<!--                Name: <input type="text" name="name" value="--><?php //echo $name;?><!--">-->
+<!--                <span class="error">* --><?php //echo $nameErr;?><!--</span>-->
+<!--                <br><br>-->
+<!--                E-mail: <input type="text" name="email" value="--><?php //echo $email;?><!--">-->
+<!--                <span class="error">* --><?php //echo $emailErr;?><!--</span>-->
+<!--                <br><br>-->
+<!--                Website: <input type="text" name="website" value="--><?php //echo $website;?><!--">-->
+<!--                <span class="error">--><?php //echo $websiteErr;?><!--</span>-->
+<!--                <br><br>-->
+<!--                Comment: <textarea name="comment" rows="5" cols="40">--><?php //echo $comment;?><!--</textarea>-->
+<!--                <br><br>-->
+<!--                Gender:-->
+<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="female") echo "checked";?><!-- value="female">Female-->
+<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="male") echo "checked";?><!-- value="male">Male-->
+<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="other") echo "checked";?><!-- value="other">Other-->
+<!--                <span class="error">* --><?php //echo $genderErr;?><!--</span>-->
+<!--                <br><br>-->
+<!--                <input type="submit" name="submit" value="Submit">-->
+<!--            </form>-->
 		</div>
+        <?php
+        echo "<h2>Your Input:</h2>";
+        echo $name;
+        echo "<br>";
+        echo $email;
+        echo "<br>";
+        echo $telephone;
+        echo "<br>";
+        echo $children;
+        echo "<br>";
+        echo $secondName;
+        ?>
 	</section>
 	<section id="house" class="list-house">
 		<div class="container">
