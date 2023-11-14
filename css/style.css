@@ -416,6 +416,7 @@ body
     height: 670px;
     display: flex;
     overflow-x: auto;
+    justify-content: space-between;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;  
   }
@@ -431,5 +432,8 @@ body
   }
 
   .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
