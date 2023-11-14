@@ -15,24 +15,24 @@
 
 
 <?php
-// define variables and set to empty values
-$name = $email = $secondName = $children = $telephone = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = test_input($_POST["name"]);
-    $email = test_input($_POST["email"]);
-    $telephone = test_input($_POST["telephone"]);
-    $children = test_input($_POST["children"]);
-    $secondName = test_input($_POST["secondName"]);
-}
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
+//// define variables and set to empty values
+//$name = $email = $secondName = $children = $telephone = "";
+//
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//    $name = test_input($_POST["name"]);
+//    $email = test_input($_POST["email"]);
+//    $telephone = test_input($_POST["telephone"]);
+//    $children = test_input($_POST["children"]);
+//    $secondName = test_input($_POST["secondName"]);
+//}
+//
+//function test_input($data) {
+//    $data = trim($data);
+//    $data = stripslashes($data);
+//    $data = htmlspecialchars($data);
+//    return $data;
+//}
+//?>
 
 	<section class="head">
 		<div class="container">
@@ -114,7 +114,7 @@ function test_input($data) {
 	<section id="boking" class="form-booking">
 		<div class="container">
 			<div class="block-form">
-                <form class="form-data" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <form class="form-data" method="post"  action="pages/confirmationPage.php">
                     <div class="main-selest-data">
                         <div class="input-field">
                             <label for="date-start">Дата заїзду</label>
@@ -196,45 +196,14 @@ function test_input($data) {
                             </div>
                         </div>
                             <div class="approw-btn">
-                            <input type="submit" id="send"  name="Send" class="btn" value="Відравити">
-<!--                            <input type="submit"  value="Відравити">-->
+<!--                            <input type="button" id="send"  name="Send" class="btn" value="Відправити">-->
+<!--                            <input type="submit" id="send"  name="Send" class="btn" value="Відравити">-->
+                            <input type="submit" class="btn" value="Відравити">
                         </div>
                         </div>
                 </form>
 			</div>
-<!--            <form method="post" action="--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?><!--">-->
-<!--                Name: <input type="text" name="name" value="--><?php //echo $name;?><!--">-->
-<!--                <span class="error">* --><?php //echo $nameErr;?><!--</span>-->
-<!--                <br><br>-->
-<!--                E-mail: <input type="text" name="email" value="--><?php //echo $email;?><!--">-->
-<!--                <span class="error">* --><?php //echo $emailErr;?><!--</span>-->
-<!--                <br><br>-->
-<!--                Website: <input type="text" name="website" value="--><?php //echo $website;?><!--">-->
-<!--                <span class="error">--><?php //echo $websiteErr;?><!--</span>-->
-<!--                <br><br>-->
-<!--                Comment: <textarea name="comment" rows="5" cols="40">--><?php //echo $comment;?><!--</textarea>-->
-<!--                <br><br>-->
-<!--                Gender:-->
-<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="female") echo "checked";?><!-- value="female">Female-->
-<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="male") echo "checked";?><!-- value="male">Male-->
-<!--                <input type="radio" name="gender" --><?php //if (isset($gender) && $gender=="other") echo "checked";?><!-- value="other">Other-->
-<!--                <span class="error">* --><?php //echo $genderErr;?><!--</span>-->
-<!--                <br><br>-->
-<!--                <input type="submit" name="submit" value="Submit">-->
-<!--            </form>-->
 		</div>
-        <?php
-        echo "<h2>Your Input:</h2>";
-        echo $name;
-        echo "<br>";
-        echo $email;
-        echo "<br>";
-        echo $telephone;
-        echo "<br>";
-        echo $children;
-        echo "<br>";
-        echo $secondName;
-        ?>
 	</section>
 	<section id="house" class="list-house">
 		<div class="container">
@@ -538,12 +507,27 @@ function test_input($data) {
 			</div>		
 		</div>
 	</section>
-	<div id="myModal" class="modal">
+	<div id="myModal" class="modal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Информация о бронировании</h2>
                 <div id="data-form"></div>
                 <!-- Здесь будет отображаться информация из формы -->
+                <input type="submit" id="send"  name="Send" class="btn" value="Відравити">
+                <a href="default.asp" target="_blank">This is a link</a>
+
+                <?php
+                echo "<h2>Your Input:</h2>";
+                echo $name;
+                echo "<br>";
+                echo $email;
+                echo "<br>";
+                echo $telephone;
+                echo "<br>";
+                echo $children;
+                echo "<br>";
+                echo $secondName;
+                ?>
             </div>
         </div>
 	<footer class="footer">
