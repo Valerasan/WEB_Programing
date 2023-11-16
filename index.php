@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Лабораторна робота №1</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
 	<link rel="stylesheet" type="text/css" href="addons/slick-slider/slick.css">
 	<link rel="stylesheet" type="text/css" href="addons/slick-slider/slick-theme.css">
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
@@ -14,25 +15,6 @@
 <body>
 
 
-<?php
-//// define variables and set to empty values
-//$name = $email = $secondName = $children = $telephone = "";
-//
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//    $name = test_input($_POST["name"]);
-//    $email = test_input($_POST["email"]);
-//    $telephone = test_input($_POST["telephone"]);
-//    $children = test_input($_POST["children"]);
-//    $secondName = test_input($_POST["secondName"]);
-//}
-//
-//function test_input($data) {
-//    $data = trim($data);
-//    $data = stripslashes($data);
-//    $data = htmlspecialchars($data);
-//    return $data;
-//}
-//?>
 
 	<section class="head">
 		<div class="container">
@@ -114,7 +96,7 @@
 	<section id="boking" class="form-booking">
 		<div class="container">
 			<div class="block-form">
-                <form class="form-data" method="post"  action="pages/confirmationPage.php">
+                <form class="form-data" method="post"  action="confirmationPage.php">
                     <div class="main-selest-data">
                         <div class="input-field">
                             <label for="date-start">Дата заїзду</label>
@@ -126,7 +108,7 @@
                         </div>
                         <div class="input-field">
                             <label for="room-select">Кількість кімнат:</label>
-                            <select id="room-select">
+                            <select id="room-select" name="room-select">
                                 <option value="1" data-price="0">1 кімната</option>
                                 <option value="2" data-price="1000">2 кімнати</option>
                                 <option value="3" data-price="1200">3 кімнати</option>
@@ -135,7 +117,7 @@
                         </div>
                         <div class="input-field">
                             <label for="person-select">Кількість дорослих:</label>
-                            <select id="person-select">
+                            <select id="person-select" name="person-select">
                                 <option value="1">1 дорослий</option>
                                 <option value="2">2 дорослих</option>
                                 <option value="3">3 дорослих</option>
@@ -159,12 +141,12 @@
                             <div class="additional-options-content">
                                 <div class="check-option">
                                     <label for="option-1">Сніданок</label>
-                                    <input type="checkbox" id="option-1">
+                                    <input type="checkbox" id="option-1" name="breakfast" value="Сніданок">
                                     <div id="breakfast-price">Вартість сніданків: 0 грн</div>
                                 </div>
                                 <div class="check-option">
                                     <label for="option-2">Підвезення з вокзалу</label>
-                                    <input type="checkbox" id="option-2">
+                                    <input type="checkbox" id="option-2" name="taxi-to-train" value="Підвезення з вокзалу">
                                 </div>
                             </div>
                         </div>
@@ -174,9 +156,9 @@
                         </div>
                         <div id="additional-fields" class="additional-fields" style="display: none;">
                             <div class="fields">
-                                <div class="input-field">
-                                    <label for="surname">Прізвище:*</label>
-                                    <input type="text" id="surname"><br>
+                            <div class="input-field">
+                                <label for="surname">Прізвище:*</label>
+                                <input type="text" id="surname" name="surname" required><br>
                             </div>
                             <div class="input-field">
                                 <label for="name">Ім'я:*</label>
@@ -198,7 +180,7 @@
                             <div class="approw-btn">
 <!--                            <input type="button" id="send"  name="Send" class="btn" value="Відправити">-->
 <!--                            <input type="submit" id="send"  name="Send" class="btn" value="Відравити">-->
-                            <input type="submit" class="btn" value="Відравити">
+                            <input type="submit" class="btn" name="submit" value="Відравити">
                         </div>
                         </div>
                 </form>
@@ -513,21 +495,7 @@
                 <h2>Информация о бронировании</h2>
                 <div id="data-form"></div>
                 <!-- Здесь будет отображаться информация из формы -->
-                <input type="submit" id="send"  name="Send" class="btn" value="Відравити">
-                <a href="default.asp" target="_blank">This is a link</a>
 
-                <?php
-                echo "<h2>Your Input:</h2>";
-                echo $name;
-                echo "<br>";
-                echo $email;
-                echo "<br>";
-                echo $telephone;
-                echo "<br>";
-                echo $children;
-                echo "<br>";
-                echo $secondName;
-                ?>
             </div>
         </div>
 	<footer class="footer">
