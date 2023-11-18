@@ -32,9 +32,9 @@ $children = $_GET["children"] ?? "";
 if(isset($_GET['button1']))
 {
 
-    $servername = "*******";
-    $username = "root";
-    $password = "*******";
+    $servername = "*****";
+    $username = "*****";
+    $password = "*****";
     $dbname = "WEB";
     $UID = 0;
 
@@ -85,21 +85,51 @@ if(isset($_GET['button1']))
         $mail->Host = 'smtp.gmail.com'; // SMTP сервер
         $mail->SMTPDebug = 0;
         $mail->SMTPAuth = true;
-        $mail->Username = '*******';
-        $mail->Password = '*******';
+        $mail->Username = '*****';
+        $mail->Password = '*****';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
-        $mail->setFrom('*******', 'Booking');
+        $mail->setFrom('******', 'Booking');
         $mail->addAddress($email, $name);
         $mail->isHTML(true);
         $mail->Subject = 'Booking';
-        $mail->Body = 'Message body';
+        $mail->Body = '<html lang="uk">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1">
+                            <link rel="stylesheet" href="css/confirmPageStyle.css">
+                            <title>Тест</title>
+                        </head>
+                        <body>
+                        
+                         <div>
+                            <div class="row">
+                                <div class="col-75">
+                                    <div class="container">
+                                        <h2>Чек</h2>
+                                        <div class="row">
+                                            <div class="col-50">
+                                                <label>Дякуємо за що обрали нас</label>
+                                                <label>'.$name.'</label>
+                                                <br><br>
+                                                <label>'.$secondName.'</label>
+                                                <br><br>
+                                                <label>'.$telephone.'</label>
+                                                <br><br>
+                                            </div>
+                                         </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        </body>
+                        </html>';
 
         $mail->send();
         echo 'Message has been sent';
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}';
     }
 
 
@@ -117,10 +147,11 @@ if(isset($_GET['button1']))
                 <center><h2>Чек ліст</h2></center>
                     <div class="row">
                         <div class="col-50">
-                            <label><?php echo $_POST["surname"]; ?></label>
+                            <label><?php echo $_POST["surname"]; ?>
+                                <?php echo $_POST["name"]; ?>
+                                <?php echo $_POST["secondName"]; ?></label>
                             <input type="hidden" name="surname" value="<?php echo $_POST["surname"]; ?>">
-                            <br><br>
-                            <label><?php echo $_POST["secondName"]; ?></label>
+                            <input type="hidden" name="name" value="<?php echo $_POST["name"]; ?>">
                             <input type="hidden" name="secondName" value="<?php echo $_POST["secondName"]; ?>">
                             <br><br>
                             <label><?php echo $_POST["telephone"]; ?></label>
@@ -128,10 +159,6 @@ if(isset($_GET['button1']))
                             <br><br>
                             <label><?php echo $_POST["email"]; ?></label>
                             <input type="hidden" name="email" value="<?php echo $_POST["email"]; ?>">
-                        </div>
-                        <div class="col-50">
-                            <label><?php echo $_POST["name"]; ?></label>
-                            <input type="hidden" name="name" value="<?php echo $_POST["name"]; ?>">
                         </div>
                         <br><br>
                     </div>
